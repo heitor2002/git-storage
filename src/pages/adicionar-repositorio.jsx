@@ -9,11 +9,11 @@ export default function AddNewRepo() {
             <input type="text" placeholder="Adicionar repositório:" />
             <fieldset>
               <div>
-                <input type="checkbox" name="" id="" />
+                <input type="radio" name="public" id="public" />
                 <label>Público</label>
               </div>
               <div>
-                <input type="checkbox" name="" id="" />
+                <input type="radio" name="public" id="public" />
                 <label>Privado</label>
               </div>
             </fieldset>
