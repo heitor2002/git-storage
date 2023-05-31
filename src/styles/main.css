@@ -55,6 +55,7 @@
 .center-module .box-layout .container .form-login form input[type=submit] {
   background-color: #1d1a1a;
   color: #e8eaea;
+  cursor: pointer;
 }
 .center-module .box-layout .container .form-login form p {
   font-size: 0.8rem;
@@ -87,4 +88,12 @@
 .center-module .box-layout .container .form-new-repo form fieldset div {
   display: flex;
   gap: 10px;
+  color: #e8eaea;
+}
+.center-module .box-layout .container .form-new-repo form input[type=submit] {
+  background-color: #1d1a1a;
+  border: 0.1rem solid #1d1a1a;
+  color: #e8eaea;
+  padding: 5px;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
