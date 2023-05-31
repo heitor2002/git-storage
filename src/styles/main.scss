@@ -80,9 +80,17 @@ $border: .1rem solid $grey;
                         padding: 5px;
                         border: $border;
                         background-color: transparent;
+                        color: $white;
                     }
                     fieldset{
                         border: 0;
+                        display: flex;
+                        justify-content: center;
+                        gap: 25px;
+                        div{
+                            display: flex;
+                            gap: 10px;
+                        }
                     }
                 }
             }

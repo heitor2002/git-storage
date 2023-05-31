@@ -76,7 +76,15 @@
   padding: 5px;
   border: 0.1rem solid #1d1a1a;
   background-color: transparent;
+  color: #e8eaea;
 }
 .center-module .box-layout .container .form-new-repo form fieldset {
   border: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.center-module .box-layout .container .form-new-repo form fieldset div {
+  display: flex;
+  gap: 10px;
 }/*# sourceMappingURL=main.css.map */
