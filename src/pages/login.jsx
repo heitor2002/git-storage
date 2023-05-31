@@ -14,7 +14,7 @@ export default function Login() {
       <Layout>
         <div className="form-login">
           <form>
-            <input type="text" placeholder="Username:" />
+            <input type="text" placeholder="Usuário github:" />
             <input type="password" placeholder="Senha" />
             <p>Ainda não possui conta? <Link href={"/register"}>Cadastrar-se aqui!</Link></p>
             <input type="submit" value={"Entrar"} />
