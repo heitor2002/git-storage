@@ -9,11 +9,11 @@ export default function AddNewRepo() {
             <input type="text" placeholder="Adicionar repositório:" />
             <fieldset>
               <div>
-                <input type="radio" name="public" id="public-private-radio" />
+                <input type="radio" name="public-private-radio" id="public-radio" />
                 <label>Público</label>
               </div>
               <div>
-                <input type="radio" name="private" id="public-private-radio" />
+                <input type="radio" name="public-private-radio" id="private-radio" />
                 <label>Privado</label>
               </div>
             </fieldset>
