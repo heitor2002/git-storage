@@ -38,5 +38,23 @@ $white: #e8eaea;
                 }
             }
         }
+        .container{
+            .form-login{
+                width: 100%;
+                padding: 20px 0;
+                display: flex;
+                justify-content: center;
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    max-width: 300px;
+                    gap: 15px;
+                    input{
+                        padding: 5px;
+                    }
+                }
+            }
+        }
     }
 }
