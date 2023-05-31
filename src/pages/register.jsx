@@ -23,7 +23,7 @@ export default function Register() {
               Já possui conta?{" "}
               <Link href={"/login"}>Faça seu login aqui!</Link>
             </p>
-            <input type="submit" value={"Entrar"} />
+            <input type="submit" value={"Cadastrar"} />
           </form>
         </div>
       </Layout>
