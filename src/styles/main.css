@@ -36,7 +36,7 @@
 }
 .center-module .box-layout .container .form-login {
   width: 100%;
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
   justify-content: center;
 }
@@ -49,4 +49,10 @@
 }
 .center-module .box-layout .container .form-login form input {
   padding: 5px;
+  background-color: transparent;
+  border: 0.1rem solid #1d1a1a;
+}
+.center-module .box-layout .container .form-login form input[type=submit] {
+  background-color: #1d1a1a;
+  color: #e8eaea;
 }/*# sourceMappingURL=main.css.map */

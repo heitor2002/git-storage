@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Login() {
   return (
@@ -15,6 +16,8 @@ export default function Login() {
           <form>
             <input type="text" placeholder="Username:" />
             <input type="password" placeholder="Senha" />
+            <p>Ainda não possui conta? <Link href={"/register"}>Cadastrar-se aqui!</Link></p>
+            <input type="submit" value={"Entrar"} />
           </form>
         </div>
       </Layout>
