@@ -59,4 +59,24 @@
 .center-module .box-layout .container .form-login form p {
   font-size: 0.8rem;
   color: #e8eaea;
+}
+.center-module .box-layout .container .form-new-repo {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+.center-module .box-layout .container .form-new-repo form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.center-module .box-layout .container .form-new-repo form input[type=text] {
+  padding: 5px;
+  border: 0.1rem solid #1d1a1a;
+  background-color: transparent;
+}
+.center-module .box-layout .container .form-new-repo form fieldset {
+  border: 0;
 }/*# sourceMappingURL=main.css.map */
