@@ -7,6 +7,10 @@ export default function AddNewRepo(){
             <div className="form-new-repo">
                 <form>
                     <input type="text" placeholder="Adicionar repositório:"/>
+                    <fieldset>
+                        <input type="checkbox" name="" id="" />
+                        <input type="checkbox" name="" id="" />
+                    </fieldset>
                 </form>
             </div>
         </Layout>
