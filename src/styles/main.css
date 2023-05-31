@@ -55,4 +55,8 @@
 .center-module .box-layout .container .form-login form input[type=submit] {
   background-color: #1d1a1a;
   color: #e8eaea;
+}
+.center-module .box-layout .container .form-login form p {
+  font-size: 0.8rem;
+  color: #e8eaea;
 }/*# sourceMappingURL=main.css.map */
