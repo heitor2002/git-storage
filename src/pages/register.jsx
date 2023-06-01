@@ -2,15 +2,26 @@ import { Layout } from "@/components/Layout";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Register() {
   const [user, setUser] = useState({
     username: "",
     email: "",
+    confirmEmail: "",
     password: "",
-    userKey: "",
-    privateKey: "",
-  })
+    confirmPassword: "",
+    userKey: uuidv4(),
+    privateKey: uuidv4(),
+  });
+
+  const onChangeInput = (e) =>
+    setUser({ ...user, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user);
+  };
   return (
     <>
       <Head>
@@ -21,15 +32,44 @@ export default function Register() {
       </Head>
       <Layout>
         <div className="form-login">
-          <form>
-            <input type="text" placeholder="Usuário github:" />
-            <input type="text" placeholder="E-mail:" />
-            <input type="text" placeholder="Confirmar e-mail:" />
-            <input type="password" placeholder="Senha:" />
-            <input type="password" placeholder="Confirmar senha:" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Usuário github:"
+              value={user.username}
+              name="username"
+              onChange={onChangeInput}
+            />
+            <input
+              type="text"
+              placeholder="E-mail:"
+              value={user.email}
+              name="email"
+              onChange={onChangeInput}
+            />
+            <input
+              type="text"
+              placeholder="Confirmar e-mail:"
+              value={user.confirmEmail}
+              name="confirmEmail"
+              onChange={onChangeInput}
+            />
+            <input
+              type="password"
+              placeholder="Senha:"
+              value={user.password}
+              name="password"
+              onChange={onChangeInput}
+            />
+            <input
+              type="password"
+              placeholder="Confirmar senha:"
+              value={user.confirmPassword}
+              name="confirmPassword"
+              onChange={onChangeInput}
+            />
             <p>
-              Já possui conta?{" "}
-              <Link href={"/login"}>Faça seu login aqui!</Link>
+              Já possui conta? <Link href={"/login"}>Faça seu login aqui!</Link>
             </p>
             <input type="submit" value={"Cadastrar"} />
           </form>
