@@ -1,8 +1,16 @@
 import { Layout } from "@/components/Layout";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Register() {
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    userKey: "",
+    privateKey: "",
+  })
   return (
     <>
       <Head>
