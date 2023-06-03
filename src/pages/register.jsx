@@ -17,6 +17,7 @@ export default function Register() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [colorMessage, setColorMessage] = useState("#eb4034") //Mensagem de erro
 
   const onChangeInput = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -25,6 +26,12 @@ export default function Register() {
     e.preventDefault()
     const validate = await registerValidation(user)
     setErrorMessage(validate)
+
+    //SETANDO COR DA MENSAGEM
+    if(validate === "Cadastrando..."){
+      setColorMessage("#2bbd3c")  //Mensagem de sucesso
+    }
+
   };
   return (
     <>
@@ -81,7 +88,7 @@ export default function Register() {
               Já possui conta? <Link href={"/login"}>Faça seu login aqui!</Link>
             </p>
             {/* {!errorMessage && <p>Mensagem </p>} */}
-            <p>{errorMessage}</p>
+            <p style={{color: colorMessage}}>{errorMessage}</p>
             <input type="submit" value={"Cadastrar"} />
           </form>
         </div>

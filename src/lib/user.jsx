@@ -4,6 +4,8 @@ const register = async (user) => {
     method: "POST",
     headers: {"Content-Type":"application/json"},
     body: JSON.stringify(user)
+  }).then(() => {
+    window.location.reload()
   })
     
 };
