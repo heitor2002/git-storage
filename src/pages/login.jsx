@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { loginValidation } from "@/lib/userLogin";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,7 +14,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(user)
+    const userData = await loginValidation(user)
+    console.log(userData)
   }
 
   return (

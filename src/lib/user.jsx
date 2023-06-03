@@ -31,6 +31,4 @@ export default async function registerValidation(body) {
   }
 }
 
-export default async function login(body){
-  
-}
+
