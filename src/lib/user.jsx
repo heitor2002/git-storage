@@ -1,6 +1,11 @@
 const register = async (user) => {
-    const {username, email, password, userKey, privateKey} = user;
-    console.log(username, email, password, userKey, privateKey)
+  
+  const response = await fetch("http://localhost:3000/api/users", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify(user)
+  })
+    
 };
 
 export default async function registerValidation(body) {
@@ -19,7 +24,7 @@ export default async function registerValidation(body) {
   } else if (body.password !== body.confirmPassword) {
     return "Senhas incompatíveis";
   } else {
-    register(body)
+    register(body);
     return "Cadastrando...";
   }
 }
