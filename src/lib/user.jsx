@@ -30,3 +30,7 @@ export default async function registerValidation(body) {
     return "Cadastrando...";
   }
 }
+
+export default async function login(body){
+  
+}

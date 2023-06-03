@@ -1,8 +1,21 @@
 import { Layout } from "@/components/Layout";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Login() {
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  })
+
+  const onChangeInput = (e) => setUser({...user, [e.target.name]:e.target.value});
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log(user)
+  }
+
   return (
     <>
       <Head>
@@ -13,9 +26,9 @@ export default function Login() {
       </Head>
       <Layout>
         <div className="form-login">
-          <form>
-            <input type="text" placeholder="Usuário github:" />
-            <input type="password" placeholder="Senha" />
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Usuário github:" name="username" value={user.username} onChange={onChangeInput}/>
+            <input type="password" placeholder="Senha" name="password" value={user.password} onChange={onChangeInput}/>
             <p>Ainda não possui conta? <Link href={"/register"}>Cadastrar-se aqui!</Link></p>
             <input type="submit" value={"Entrar"} />
           </form>
