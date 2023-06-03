@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import registerValidation from "@/lib/user";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,12 +16,15 @@ export default function Register() {
     privateKey: uuidv4(),
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onChangeInput = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(user);
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const validate = await registerValidation(user)
+    setErrorMessage(validate)
   };
   return (
     <>
@@ -39,6 +43,7 @@ export default function Register() {
               value={user.username}
               name="username"
               onChange={onChangeInput}
+              required
             />
             <input
               type="text"
@@ -46,6 +51,7 @@ export default function Register() {
               value={user.email}
               name="email"
               onChange={onChangeInput}
+              required
             />
             <input
               type="text"
@@ -53,6 +59,7 @@ export default function Register() {
               value={user.confirmEmail}
               name="confirmEmail"
               onChange={onChangeInput}
+              required
             />
             <input
               type="password"
@@ -60,6 +67,7 @@ export default function Register() {
               value={user.password}
               name="password"
               onChange={onChangeInput}
+              required
             />
             <input
               type="password"
@@ -67,10 +75,13 @@ export default function Register() {
               value={user.confirmPassword}
               name="confirmPassword"
               onChange={onChangeInput}
+              required
             />
             <p>
               Já possui conta? <Link href={"/login"}>Faça seu login aqui!</Link>
             </p>
+            {/* {!errorMessage && <p>Mensagem </p>} */}
+            <p>{errorMessage}</p>
             <input type="submit" value={"Cadastrar"} />
           </form>
         </div>
