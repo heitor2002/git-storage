@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cookies-next": "^2.1.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "jsonwebtoken": "^8.5.1",

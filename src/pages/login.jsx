@@ -1,5 +1,4 @@
 import { Layout } from "@/components/Layout";
-import { loginValidation } from "@/lib/userLogin";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,8 +12,20 @@ export default function Login() {
   const onChangeInput = (e) => setUser({...user, [e.target.name]:e.target.value});
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    loginValidation(user)
+    try{
+      e.preventDefault()
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(user)
+      })
+
+      const json = await response.json()
+
+      console.log(json)
+    }catch(err){
+
+    }
   }
 
   return (

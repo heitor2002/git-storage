@@ -1,9 +1,8 @@
 import jwt from "jsonwebtoken";
 
+const SECRET_KEY = "g6sd5a46s8d46g1df684n663fg547f987q65we798g1gdf594h98a19w8e4q98"
 const createToken = (user) => {
-
-  const SECRET_KEY = "g6sd5a46s8d46g1df684n663fg547f987q65we798g1"
-  
+ 
   const payload = {
     username: user.username,
     email: user.email,
@@ -24,7 +23,6 @@ export async function loginValidation(body) {
     return "Senha incorreta!";
   } else {
     const token = createToken(user);
-    console.log(token)
     return token
   }
 }
