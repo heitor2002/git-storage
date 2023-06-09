@@ -1,9 +1,14 @@
 import { Layout } from "@/components/Layout";
+import { setCookie } from "cookies-next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Login() {
+
+  const router = useRouter()
+
   const [user, setUser] = useState({
     username: "",
     password: ""
@@ -21,8 +26,11 @@ export default function Login() {
       })
 
       const json = await response.json()
+      if(response.status !== 201) throw new Error (json)
 
       console.log(json)
+      setCookie("authorization", json)
+      router.push("/")
     }catch(err){
 
     }

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const dataUser = {username, password}
     try {
       const user = await loginValidation(dataUser);
-      res.status(200).json(user);
+      res.status(201).json(user);
     } catch (err) {
       res.status(400).json(err.message);
     }
