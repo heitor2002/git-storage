@@ -12,7 +12,14 @@ export default function Profile() {
       </Head>
       <Layout>
         <div className="flex-profile">
-            
+        <img src="https://github.com/heitor2002.png" alt="" />
+        <div className="data-profile">
+            <ul>
+                <li>Username: ...</li>
+                <li>Email: ...</li>
+                <li>Repositórios: ...</li>
+            </ul>
+        </div>
         </div>
       </Layout>
     </>

@@ -85,4 +85,20 @@ input[type=submit] {
   display: flex;
   gap: 10px;
   color: #e8eaea;
+}
+.center-module .box-layout .container .flex-profile {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+.center-module .box-layout .container .flex-profile img {
+  max-width: 250px;
+}
+.center-module .box-layout .container .flex-profile .data-profile ul {
+  list-style: none;
+}
+.center-module .box-layout .container .flex-profile .data-profile ul li {
+  color: #e8eaea;
 }/*# sourceMappingURL=main.css.map */
