@@ -96,6 +96,10 @@ input[type=submit] {
 .center-module .box-layout .container .flex-profile img {
   max-width: 250px;
 }
+.center-module .box-layout .container .flex-profile .data-profile {
+  width: 60%;
+  max-width: 400px;
+}
 .center-module .box-layout .container .flex-profile .data-profile ul {
   list-style: none;
 }
