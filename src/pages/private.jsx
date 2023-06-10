@@ -1,4 +1,6 @@
 import { Layout } from "@/components/Layout";
+import { verifyToken } from "@/lib/userLogin";
+import { getCookie } from "cookies-next";
 import Head from "next/head";
 
 export default function Private() {
@@ -16,3 +18,22 @@ export default function Private() {
     </>
   );
 }
+
+export const getServerSideProps = async ({ req, res }) => {
+  try {
+    const token = getCookie("authorization", { req, res });
+    if(!token) throw new Error ("Token inválido")
+    verifyToken(token)
+    return {
+      props: {},
+    };
+  } catch (err) {
+    return{
+      redirect:{
+        permanent: false,
+        destination: "/login"
+      },
+      props:{}
+    }
+  }
+};

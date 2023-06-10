@@ -11,6 +11,18 @@ const createToken = (user) => {
   return jwt.sign(payload, SECRET_KEY)
 };
 
+const readToken = (token) => {
+  try{
+    return jwt.verify(token, SECRET_KEY)
+  }catch(err){
+    throw new Error("Token inválido!")
+  }
+}
+
+export const verifyToken = (token) => {
+  readToken(token)
+}
+
 export async function loginValidation(body) {
   const response = await fetch("http://localhost:3000/api/users");
   const data = await response.json();

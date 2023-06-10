@@ -30,7 +30,7 @@ export default function Login() {
 
       console.log(json)
       setCookie("authorization", json)
-      router.push("/")
+      router.push("/adicionar-repositorio")
     }catch(err){
 
     }
