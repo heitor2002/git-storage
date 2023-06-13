@@ -1,7 +1,12 @@
 import { Layout } from "@/components/Layout";
+import { AuthContext } from "@/context/AuthContext";
+import { verifyToken } from "@/lib/userLogin";
+import { getCookie } from "cookies-next";
 import Head from "next/head";
+import { useContext } from "react";
 
 export default function Profile() {
+  const auth = useContext(AuthContext);
   return (
     <>
       <Head>
@@ -25,3 +30,22 @@ export default function Profile() {
     </>
   );
 }
+
+export const getServerSideProps = async ({ req, res }) => {
+  try {
+    const token = getCookie("authorization", { req, res });
+    if(!token) throw new Error ("Token inválido")
+    verifyToken(token)
+    return {
+      props: {},
+    };
+  } catch (err) {
+    return{
+      redirect:{
+        permanent: false,
+        destination: "/login"
+      },
+      props:{}
+    }
+  }
+};

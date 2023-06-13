@@ -1,11 +1,14 @@
 import { Layout } from "@/components/Layout";
+import { AuthContext } from "@/context/AuthContext";
 import { setCookie } from "cookies-next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function Login() {
+
+  const auth = useContext(AuthContext)
 
   const router = useRouter()
 
@@ -17,23 +20,8 @@ export default function Login() {
   const onChangeInput = (e) => setUser({...user, [e.target.name]:e.target.value});
 
   const handleSubmit = async (e) => {
-    try{
-      e.preventDefault()
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(user)
-      })
-
-      const json = await response.json()
-      if(response.status !== 201) throw new Error (json)
-
-      console.log(json)
-      setCookie("authorization", json)
-      router.push("/adicionar-repositorio")
-    }catch(err){
-
-    }
+    e.preventDefault()
+    const isLogged = await auth.signIn(user)
   }
 
   return (
