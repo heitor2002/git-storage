@@ -1,16 +1,12 @@
 import { Layout } from "@/components/Layout";
 import { AuthContext } from "@/context/AuthContext";
-import { setCookie } from "cookies-next";
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 
 export default function Login() {
 
   const auth = useContext(AuthContext)
-
-  const router = useRouter()
 
   const [user, setUser] = useState({
     username: "",
