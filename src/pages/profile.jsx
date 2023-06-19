@@ -6,7 +6,8 @@ import Head from "next/head";
 import { useContext } from "react";
 
 export default function Profile() {
-  const auth = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
+  const profileImage = `https://github.com/${user?.username}.png`
   return (
     <>
       <Head>
@@ -17,12 +18,12 @@ export default function Profile() {
       </Head>
       <Layout>
         <div className="flex-profile">
-        <img src="https://github.com/heitor2002.png" alt="" />
+        <img src={profileImage} alt="" />
         <div className="data-profile">
             <ul>
-                <li>Username: ...</li>
-                <li>Email: ...</li>
-                <li>Repositórios: ...</li>
+                <li>Username: {user?.username}</li>
+                <li>Email: {user?.email}</li>
+                <li>Repositórios: {user?.userKey}</li>
             </ul>
         </div>
         </div>

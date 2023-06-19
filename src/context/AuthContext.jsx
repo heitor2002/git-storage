@@ -1,29 +1,47 @@
-import { setCookie } from "cookies-next";
+import { fetchUser } from "@/lib/user";
+import { decodedToken } from "@/lib/userLogin";
+import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/router";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const router = useRouter()
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+  const cookieToken = getCookie("authorization");
+
   const signIn = async (userLogin) => {
-    try{
+    try {
       const response = await fetch("http://localhost:3000/api/login", {
         method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(userLogin)
-      })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userLogin),
+      });
 
-      const json = await response.json()
-      if(response.status !== 201) throw new Error (json)
+      const json = await response.json();
+      if (response.status !== 201) throw new Error(json);
 
-      console.log(json)
-      setCookie("authorization", json)
-      router.push("/adicionar-repositorio")
-    }catch(err){
-
-    }
+      console.log(json);
+      setCookie("authorization", json);
+      if (!cookieToken) {
+        console.log("Não possui cookies");
+      } else {
+        console.log("Possui cookies");
+      }
+      await router.push("/profile");
+      window.location.reload()
+    } catch (err) {}
   };
-  return <AuthContext.Provider value={{signIn}}>{children}</AuthContext.Provider>;
+
+  useEffect(() => {
+    const token = decodedToken(cookieToken);
+    setUser(token);
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ signIn, user }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

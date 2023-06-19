@@ -6,6 +6,8 @@ const createToken = (user) => {
   const payload = {
     username: user.username,
     email: user.email,
+    privateKey: user.privateKey,
+    userKey: user.privateKey
   };
 
   return jwt.sign(payload, SECRET_KEY)
@@ -36,5 +38,14 @@ export async function loginValidation(body) {
   } else {
     const token = createToken(user);
     return token
+  }
+}
+
+export const decodedToken = (token) => {
+  try{
+    const decoded = jwt.verify(token, SECRET_KEY);
+    return decoded;
+  }catch(err){
+    console.log(err)
   }
 }
