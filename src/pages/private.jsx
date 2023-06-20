@@ -3,10 +3,14 @@ import fetchApi from "@/hooks/fetchApi";
 import { verifyToken } from "@/lib/userLogin";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Private() {
-  const {data} = fetchApi("http://localhost:3000/api/private")
-  console.log(data)
+  const { data } = fetchApi("http://localhost:3000/api/private");
+  const extractRepositoryName = (url) => {
+    const lastBarUrl = url.lastIndexOf("/");
+    return url.substring(lastBarUrl + 1);
+  };
   return (
     <>
       <Head>
@@ -16,7 +20,23 @@ export default function Private() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <h2>Página privada</h2>
+        <ul className="repository-list">
+          {data.map((repository) => {
+            const repositoryLink = repository.link_rep;
+
+            const repositoryName =
+              extractRepositoryName(repositoryLink).toUpperCase();
+
+            return (
+              <>
+                <li>
+                  <h2>{repositoryName}</h2>
+                  <Link href={repositoryLink}>Acessar repositório</Link>
+                </li>
+              </>
+            );
+          })}
+        </ul>
       </Layout>
     </>
   );
@@ -25,18 +45,18 @@ export default function Private() {
 export const getServerSideProps = async ({ req, res }) => {
   try {
     const token = getCookie("authorization", { req, res });
-    if(!token) throw new Error ("Token inválido")
-    verifyToken(token)
+    if (!token) throw new Error("Token inválido");
+    verifyToken(token);
     return {
       props: {},
     };
   } catch (err) {
-    return{
-      redirect:{
+    return {
+      redirect: {
         permanent: false,
-        destination: "/login"
+        destination: "/login",
       },
-      props:{}
-    }
+      props: {},
+    };
   }
 };

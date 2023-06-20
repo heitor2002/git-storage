@@ -127,6 +127,33 @@ input[type="submit"] {
           }
         }
       }
+      ul.repository-list{
+        list-style: none;
+        width: 100%;
+        margin-top: 15px;
+        max-height: 300px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        li{
+          width: 100%;
+          background-color: $grey;
+          padding: 5px;
+          h2{
+            font-size: 1rem;
+            color: $white;
+          }
+          a{
+            font-size: .8rem;
+            color: $white;
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -120,4 +120,31 @@ input[type=submit] {
 .center-module .box-layout .container .flex-profile .data-profile ul button:hover {
   background-color: #992121;
   border: 1px solid #992121;
+}
+.center-module .box-layout .container ul.repository-list {
+  list-style: none;
+  width: 100%;
+  margin-top: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.center-module .box-layout .container ul.repository-list li {
+  width: 100%;
+  background-color: #1d1a1a;
+  padding: 5px;
+}
+.center-module .box-layout .container ul.repository-list li h2 {
+  font-size: 1rem;
+  color: #e8eaea;
+}
+.center-module .box-layout .container ul.repository-list li a {
+  font-size: 0.8rem;
+  color: #e8eaea;
+  text-decoration: none;
+}
+.center-module .box-layout .container ul.repository-list li a:hover {
+  text-decoration: underline;
 }/*# sourceMappingURL=main.css.map */
