@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 
 export default function fetchApi(url) {
-  const [data, setData] = useState(null);
-  useEffect(async () => {
+  const [data, setData] = useState([]);
+  const fetchData = async (url) => {
     try {
       const response = await fetch(url);
-      const json = await response.json();
+      const json = await response.json()
       setData(json)
-      return {data}
     } catch (err) {}
+  };
+  useEffect(() => {
+    fetchData(url);
   }, [url]);
+  return { data };
 }

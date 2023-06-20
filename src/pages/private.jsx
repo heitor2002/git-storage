@@ -1,9 +1,12 @@
 import { Layout } from "@/components/Layout";
+import fetchApi from "@/hooks/fetchApi";
 import { verifyToken } from "@/lib/userLogin";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
 
 export default function Private() {
+  const {data} = fetchApi("http://localhost:3000/api/private")
+  console.log(data)
   return (
     <>
       <Head>
