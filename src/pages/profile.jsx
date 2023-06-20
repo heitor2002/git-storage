@@ -24,6 +24,7 @@ export default function Profile() {
                 <li>Username: {user?.username}</li>
                 <li>Email: {user?.email}</li>
                 <li>Repositórios: {user?.userKey}</li>
+                <button>Sair</button>
             </ul>
         </div>
         </div>

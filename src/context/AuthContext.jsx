@@ -31,7 +31,9 @@ export const AuthProvider = ({ children }) => {
       }
       await router.push("/profile");
       window.location.reload()
-    } catch (err) {}
+    } catch (err) {
+      throw Error;
+    }
   };
 
   useEffect(() => {

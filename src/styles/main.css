@@ -105,4 +105,19 @@ input[type=submit] {
 }
 .center-module .box-layout .container .flex-profile .data-profile ul li {
   color: #e8eaea;
+}
+.center-module .box-layout .container .flex-profile .data-profile ul button {
+  width: 100%;
+  max-width: 100px;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #e8eaea;
+  background-color: transparent;
+  color: #e8eaea;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.center-module .box-layout .container .flex-profile .data-profile ul button:hover {
+  background-color: #992121;
+  border: 1px solid #992121;
 }/*# sourceMappingURL=main.css.map */
