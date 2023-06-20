@@ -6,7 +6,7 @@ import Head from "next/head";
 import { useContext } from "react";
 
 export default function Profile() {
-  const {user} = useContext(AuthContext);
+  const {user, signOut} = useContext(AuthContext);
   const profileImage = `https://github.com/${user?.username}.png`
   return (
     <>
@@ -24,7 +24,7 @@ export default function Profile() {
                 <li>Username: {user?.username}</li>
                 <li>Email: {user?.email}</li>
                 <li>Repositórios: {user?.userKey}</li>
-                <button>Sair</button>
+                <button onClick={signOut}>Sair</button>
             </ul>
         </div>
         </div>

@@ -1,6 +1,6 @@
 import { fetchUser } from "@/lib/user";
 import { decodedToken } from "@/lib/userLogin";
-import { getCookie, setCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { createContext, useEffect, useState } from "react";
 
@@ -36,13 +36,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const signOut = async () => {
+    await deleteCookie("authorization");
+    await setUser(null)
+    window.location.reload()
+  }
+
   useEffect(() => {
     const token = decodedToken(cookieToken);
     setUser(token);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user }}>
+    <AuthContext.Provider value={{ signIn, user, signOut }}>
       {children}
     </AuthContext.Provider>
   );
