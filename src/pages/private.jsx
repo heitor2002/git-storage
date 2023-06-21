@@ -1,16 +1,24 @@
 import { Layout } from "@/components/Layout";
+import { AuthContext } from "@/context/AuthContext";
 import fetchApi from "@/hooks/fetchApi";
 import { verifyToken } from "@/lib/userLogin";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function Private() {
+  const { user } = useContext(AuthContext);
   const { data } = fetchApi("http://localhost:3000/api/private");
   const extractRepositoryName = (url) => {
     const lastBarUrl = url.lastIndexOf("/");
     return url.substring(lastBarUrl + 1);
   };
+
+  const privateRepositoryList = data.filter(
+    (item) => item?.private_key == user?.privateKey
+  );
+
   return (
     <>
       <Head>
@@ -21,7 +29,7 @@ export default function Private() {
       </Head>
       <Layout>
         <ul className="repository-list">
-          {data.map((repository) => {
+          {privateRepositoryList.map((repository) => {
             const repositoryLink = repository.link_rep;
 
             const repositoryName =
@@ -29,7 +37,7 @@ export default function Private() {
 
             return (
               <>
-                <li>
+                <li key={repository?.id}>
                   <h2>{repositoryName}</h2>
                   <Link href={repositoryLink}>Acessar repositório</Link>
                 </li>
