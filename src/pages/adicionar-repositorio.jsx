@@ -19,25 +19,26 @@ export default function AddNewRepo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(repository);
+    const {link} = repository;
+    const {username} = user;
     if(repository.inputRadio === "private"){
       // console.log("private", user.privateKey)
-      try{
-        const response = await fetch("http://localhost:3000/api/private", {
-          method: "POST",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify()
-        })
-      }catch(err){
-        console.log(err)
-      }
+      // try{
+      //   const response = await fetch("http://localhost:3000/api/private", {
+      //     method: "POST",
+      //     headers: {"Content-Type":"application/json"},
+      //     body: JSON.stringify({username, link})
+      //   })
+      // }catch(err){
+      //   console.log(err)
+      // }
     }else{
       // console.log("public", user.userKey)
       try{
         const response = await fetch("http://localhost:3000/api/public", {
           method: "POST",
           headers: {"Content-Type":"application/json"},
-          body: JSON.stringify()
+          body: JSON.stringify({username, link})
         })
       }catch(err){
         console.log(err)
