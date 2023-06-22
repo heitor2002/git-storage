@@ -44,6 +44,7 @@ export default function Private() {
               </>
             );
           })}
+          {privateRepositoryList.length <= 0 && <h4 style={{color: "white"}}>Não há repositório publicado...</h4>}
         </ul>
       </Layout>
     </>

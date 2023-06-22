@@ -2,8 +2,22 @@ import { Layout } from "@/components/Layout";
 import { verifyToken } from "@/lib/userLogin";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
+import { useState } from "react";
 
 export default function AddNewRepo() {
+  const [repository, setRepository] = useState({
+    link: "",
+    inputRadio: ""
+  });
+
+  const onChangeInput = (e) =>
+    setRepository({ ...repository, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(repository);
+  };
+
   return (
     <>
       <Head>
@@ -14,24 +28,40 @@ export default function AddNewRepo() {
       </Head>
       <Layout>
         <div className="form-new-repo">
-          <form>
-            <input type="text" placeholder="Adicionar repositório:" />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Adicionar repositório:"
+              name="link"
+              value={repository.link}
+              onChange={onChangeInput}
+            />
             <fieldset>
               <div>
-                <input
-                  type="radio"
-                  name="public-private-radio"
-                  id="public-radio"
-                />
-                <label>Público</label>
+                <label>
+                  <input
+                    type="radio"
+                    name="inputRadio"
+                    id="public-radio"
+                    value={"public"}
+                    checked={repository.inputRadio === "public"}
+                    onChange={onChangeInput}
+                  />
+                  Público
+                </label>
               </div>
               <div>
-                <input
-                  type="radio"
-                  name="public-private-radio"
-                  id="private-radio"
-                />
-                <label>Privado</label>
+                <label>
+                  <input
+                    type="radio"
+                    name="inputRadio"
+                    id="private-radio"
+                    value={"private"}
+                    checked={repository.inputRadio === "private"}
+                    onChange={onChangeInput}
+                  />
+                  Privado
+                </label>
               </div>
             </fieldset>
             <input type="submit" />
@@ -45,18 +75,18 @@ export default function AddNewRepo() {
 export const getServerSideProps = async ({ req, res }) => {
   try {
     const token = getCookie("authorization", { req, res });
-    if(!token) throw new Error ("Token inválido")
-    verifyToken(token)
+    if (!token) throw new Error("Token inválido");
+    verifyToken(token);
     return {
       props: {},
     };
   } catch (err) {
-    return{
-      redirect:{
+    return {
+      redirect: {
         permanent: false,
-        destination: "/login"
+        destination: "/login",
       },
-      props:{}
-    }
+      props: {},
+    };
   }
 };

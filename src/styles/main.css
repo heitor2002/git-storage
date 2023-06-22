@@ -82,9 +82,11 @@ input[type=submit] {
   gap: 25px;
 }
 .center-module .box-layout .container .form-new-repo form fieldset div {
+  color: #e8eaea;
+}
+.center-module .box-layout .container .form-new-repo form fieldset div label {
   display: flex;
   gap: 10px;
-  color: #e8eaea;
 }
 .center-module .box-layout .container .flex-profile {
   display: flex;
