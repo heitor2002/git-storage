@@ -20,18 +20,18 @@ export default function AddNewRepo() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {link} = repository;
-    const {username} = user;
+    const {username, privateKey} = user;
     if(repository.inputRadio === "private"){
       // console.log("private", user.privateKey)
-      // try{
-      //   const response = await fetch("http://localhost:3000/api/private", {
-      //     method: "POST",
-      //     headers: {"Content-Type":"application/json"},
-      //     body: JSON.stringify({username, link})
-      //   })
-      // }catch(err){
-      //   console.log(err)
-      // }
+      try{
+        const response = await fetch("http://localhost:3000/api/private", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify({link, privateKey})
+        }).then(() => window.location.reload())
+      }catch(err){
+        console.log(err)
+      }
     }else{
       // console.log("public", user.userKey)
       try{
@@ -39,7 +39,7 @@ export default function AddNewRepo() {
           method: "POST",
           headers: {"Content-Type":"application/json"},
           body: JSON.stringify({username, link})
-        })
+        }).then(() => window.location.reload())
       }catch(err){
         console.log(err)
       }

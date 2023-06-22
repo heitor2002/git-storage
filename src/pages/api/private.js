@@ -8,4 +8,14 @@ export default async function handler(req, res) {
     })
     res.status(200).json(users)
   }
+  if(req.method === "POST"){
+    const {link, privateKey} = req.body;
+    console.log(privateKey, link)
+
+    const rep = await query({
+        query: "INSERT INTO private_rep (link_rep, private_key) VALUES (?,?)",
+        values: [link, privateKey]
+      })
+      res.status(200).json(rep)
+  }
 }
