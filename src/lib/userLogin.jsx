@@ -7,7 +7,7 @@ const createToken = (user) => {
     username: user.username,
     email: user.email,
     privateKey: user.privateKey,
-    userKey: user.privateKey
+    userKey: user.userKey
   };
 
   return jwt.sign(payload, SECRET_KEY)

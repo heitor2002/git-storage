@@ -1,10 +1,14 @@
 import { Layout } from "@/components/Layout";
+import { AuthContext } from "@/context/AuthContext";
 import { verifyToken } from "@/lib/userLogin";
 import { getCookie } from "cookies-next";
 import Head from "next/head";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function AddNewRepo() {
+
+  const {user} = useContext(AuthContext)
+
   const [repository, setRepository] = useState({
     link: "",
     inputRadio: ""
@@ -13,9 +17,32 @@ export default function AddNewRepo() {
   const onChangeInput = (e) =>
     setRepository({ ...repository, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(repository);
+    // console.log(repository);
+    if(repository.inputRadio === "private"){
+      // console.log("private", user.privateKey)
+      try{
+        const response = await fetch("http://localhost:3000/api/private", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify()
+        })
+      }catch(err){
+        console.log(err)
+      }
+    }else{
+      // console.log("public", user.userKey)
+      try{
+        const response = await fetch("http://localhost:3000/api/public", {
+          method: "POST",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify()
+        })
+      }catch(err){
+        console.log(err)
+      }
+    }
   };
 
   return (
