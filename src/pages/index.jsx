@@ -1,7 +1,18 @@
 import { Layout } from "@/components/Layout";
+import fetchApi from "@/hooks/fetchApi";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
+  const {data} = fetchApi("http://localhost:3000/api/public");
+
+  const extractRepositoryName = (url) => {
+    const lastBarUrl = url.lastIndexOf("/");
+    return url.substring(lastBarUrl + 1);
+  };
+
+
+  console.log(data)
   return (
     <>
       <Head>
@@ -11,7 +22,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        
+      <ul className="repository-list">
+        {data.map(repository => {
+
+          const repositoryName = extractRepositoryName(repository.link).toUpperCase();
+          return (
+            <>
+            <li>
+              <h4>Usuário: {repository.user}</h4>
+              <h2>{repositoryName}</h2>
+              <Link href={repository.link}>Acessar repositório</Link>
+            </li>
+            </>
+          )
+        })}
+      </ul>
       </Layout>
     </>
   );
